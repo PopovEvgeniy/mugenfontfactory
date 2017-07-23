@@ -33,4 +33,4 @@ It can be compiled under Lazarus 1.4 or higher.
 Change log
 
 1.0 - 2.0.4 - Old builds.
-2.0.5 - Totally program rewriten.
+2.0.5 - Totally program rewritten.
