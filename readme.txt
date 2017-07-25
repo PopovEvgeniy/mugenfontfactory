@@ -1,12 +1,12 @@
                                 MUGEN FONT FACTORY
 
-                                  Version 2.0.5
+                                  Version 2.0.6
 
                          Created by Popov Evgeniy Alekseyevich
 
 System requirement
 
-Windows 98 or higher
+Windows 2000 or higher
 WINE environment for run under a UNIX operation systems
 
 Program description
@@ -28,9 +28,10 @@ You can send me a letter to tuzik87@inbox.ru
 About program modification
 
 Source code is included in source.zip archive.
-It can be compiled under Lazarus 1.4 or higher.
+It can be compiled under Lazarus 1.6.4 or higher.
 
 Change log
 
 1.0 - 2.0.4 - Old builds.
-2.0.5 - Totally program rewritten.
+2.0.5 - Program was totally rewritten.
+2.0.6 - Small changes. Windows 9x support was dropped.

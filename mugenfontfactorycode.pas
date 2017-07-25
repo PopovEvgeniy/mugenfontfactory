@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Dialogs, ComCtrls,
-  ExtCtrls, StdCtrls;
+  ExtCtrls, StdCtrls, LazUTF8;
 
 type
 
@@ -87,12 +87,10 @@ convert_file_name:=target;
 end;
 
 function execute_program(executable:string;argument:string):Integer;
-var parametrs:string;
 var code:Integer;
 begin
-parametrs:=UTF8ToSys(argument);
 try
-code:=ExecuteProcess(executable,parametrs,[]);
+code:=ExecuteProcess(UTF8ToWinCp(executable),UTF8ToWinCp(argument),[]);
 except
 On EOSError do code:=-1;
 end;
@@ -102,7 +100,7 @@ end;
 procedure window_setup();
 begin
  Application.Title:='MUGEN FONT FACTORY';
- Form1.Caption:='MUGEN FONT FACTORY 2.0.5';
+ Form1.Caption:='MUGEN FONT FACTORY 2.0.6';
  Form1.BorderStyle:=bsDialog;
  Form1.Font.Name:=Screen.MenuFont.Name;
  Form1.Font.Size:=14;
