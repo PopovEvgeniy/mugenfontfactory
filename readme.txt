@@ -1,6 +1,6 @@
                                 MUGEN FONT FACTORY
 
-                                  Version 2.0.7
+                                  Version 2.0.8
 
                          This software made by Popov Evgeniy Alekseyevich
 
@@ -33,6 +33,7 @@ It can be compiled under Lazarus 1.8.4 or higher.
 Change log
 
 1.0 - 2.0.4 - Old builds.
-2.0.5 - Program was totally rewritten.
+2.0.5 - The program was totally rewritten.
 2.0.6 - Small changes. Windows 9x support was dropped.
 2.0.7 - 64 bit system support was added.
+2.0.8 - Small changes.

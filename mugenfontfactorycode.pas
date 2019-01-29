@@ -42,7 +42,6 @@ type
   end;
 
 function get_path(): string;
-function check_input(input:string):Boolean;
 function convert_file_name(source:string): string;
 function execute_program(executable:string;argument:string):Integer;
 procedure window_setup();
@@ -61,17 +60,6 @@ implementation
 function get_path(): string;
 begin
 get_path:=ExtractFilePath(Application.ExeName);
-end;
-
-function check_input(input:string):Boolean;
-var target:Boolean;
-begin
-target:=True;
-if input='' then
-begin
-target:=False;
-end;
-check_input:=target;
 end;
 
 function convert_file_name(source:string): string;
@@ -100,7 +88,7 @@ end;
 procedure window_setup();
 begin
  Application.Title:='MUGEN FONT FACTORY';
- Form1.Caption:='MUGEN FONT FACTORY 2.0.7';
+ Form1.Caption:='MUGEN FONT FACTORY 2.0.8';
  Form1.BorderStyle:=bsDialog;
  Form1.Font.Name:=Screen.MenuFont.Name;
  Form1.Font.Size:=14;
@@ -175,13 +163,9 @@ end;
 
 procedure run_backend_tool(arguments:string);
 var error:SmallInt;
-var message: array[0..3] of string;
+var message: array[0..3] of string=('Operation successfully complete','Cant allocate memory','File operation error','Invalid format');
 var job:string;
 begin
-message[0]:='Operation successfully complete';
-message[1]:='Cant allocate memory';
-message[2]:='File operation error';
-message[3]:='Invalid format';
 job:=get_path()+'fntreconstructor';
 error:=execute_program(job,arguments);
 if error=-1 then
@@ -220,17 +204,17 @@ end;
 
 procedure TForm1.LabeledEdit1Change(Sender: TObject);
 begin
-Form1.Button3.Enabled:=check_input(Form1.LabeledEdit1.Text) and check_input(Form1.LabeledEdit2.Text);
+Form1.Button3.Enabled:=(Form1.LabeledEdit1.Text<>'') and (Form1.LabeledEdit2.Text<>'');
 end;
 
 procedure TForm1.LabeledEdit2Change(Sender: TObject);
 begin
-Form1.Button3.Enabled:=check_input(Form1.LabeledEdit1.Text) and check_input(Form1.LabeledEdit2.Text);
+Form1.Button3.Enabled:=(Form1.LabeledEdit1.Text<>'') and (Form1.LabeledEdit2.Text<>'');
 end;
 
 procedure TForm1.LabeledEdit3Change(Sender: TObject);
 begin
-Form1.Button5.Enabled:=check_input(Form1.LabeledEdit3.Text);
+Form1.Button5.Enabled:=Form1.LabeledEdit3.Text<>'';
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
