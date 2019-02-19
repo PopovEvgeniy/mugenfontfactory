@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Dialogs, ComCtrls,
-  ExtCtrls, StdCtrls, LazUTF8;
+  ExtCtrls, StdCtrls, LazUTF8, LazFileUtils;
 
 type
 
@@ -88,7 +88,7 @@ end;
 procedure window_setup();
 begin
  Application.Title:='MUGEN FONT FACTORY';
- Form1.Caption:='MUGEN FONT FACTORY 2.0.8';
+ Form1.Caption:='MUGEN FONT FACTORY 2.0.9';
  Form1.BorderStyle:=bsDialog;
  Form1.Font.Name:=Screen.MenuFont.Name;
  Form1.Font.Size:=14;
