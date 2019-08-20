@@ -1,6 +1,6 @@
                                 MUGEN FONT FACTORY
 
-                                  Version 2.0.9
+                                  Version 2.1
 
                          This software made by Popov Evgeniy Alekseyevich
 
@@ -38,3 +38,4 @@ Change log
 2.0.7 - 64 bit system support was added.
 2.0.8 - Small changes.
 2.0.9 - Source code was adapted to new version of Lazarus.
+2.1 - The program was adapted to new version of FNT RECONSTRUCTOR.

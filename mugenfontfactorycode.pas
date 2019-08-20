@@ -88,7 +88,7 @@ end;
 procedure window_setup();
 begin
  Application.Title:='MUGEN FONT FACTORY';
- Form1.Caption:='MUGEN FONT FACTORY 2.0.9';
+ Form1.Caption:='MUGEN FONT FACTORY 2.1';
  Form1.BorderStyle:=bsDialog;
  Form1.Font.Name:=Screen.MenuFont.Name;
  Form1.Font.Size:=14;
@@ -163,7 +163,7 @@ end;
 
 procedure run_backend_tool(arguments:string);
 var error:SmallInt;
-var message: array[0..3] of string=('Operation successfully complete','Cant allocate memory','File operation error','Invalid format');
+var message: array[0..4] of string=('Operation successfully complete','Cant open input file','Cant create output file','Cant allocate memory','Invalid format');
 var job:string;
 begin
 job:=get_path()+'fntreconstructor';
