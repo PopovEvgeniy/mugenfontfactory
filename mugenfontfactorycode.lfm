@@ -7,7 +7,7 @@ object Form1: TForm1
   ClientHeight = 189
   ClientWidth = 374
   OnCreate = FormCreate
-  LCLVersion = '2.0.10.0'
+  LCLVersion = '2.2.0.4'
   object PageControl1: TPageControl
     Left = 0
     Height = 192
@@ -28,7 +28,6 @@ object Form1: TForm1
         EditLabel.Height = 15
         EditLabel.Width = 120
         EditLabel.Caption = 'LabeledEdit1'
-        EditLabel.ParentColor = False
         TabOrder = 0
         Text = 'LabeledEdit1'
         OnChange = LabeledEdit1Change
@@ -41,7 +40,6 @@ object Form1: TForm1
         EditLabel.Height = 15
         EditLabel.Width = 120
         EditLabel.Caption = 'LabeledEdit2'
-        EditLabel.ParentColor = False
         TabOrder = 1
         Text = 'LabeledEdit2'
         OnChange = LabeledEdit2Change
@@ -76,17 +74,16 @@ object Form1: TForm1
     end
     object TabSheet2: TTabSheet
       Caption = 'TabSheet2'
-      ClientHeight = 126
-      ClientWidth = 359
+      ClientHeight = 164
+      ClientWidth = 368
       object LabeledEdit3: TLabeledEdit
         Left = 112
-        Height = 21
+        Height = 23
         Top = 24
         Width = 136
-        EditLabel.Height = 13
+        EditLabel.Height = 15
         EditLabel.Width = 136
         EditLabel.Caption = 'LabeledEdit3'
-        EditLabel.ParentColor = False
         TabOrder = 0
         Text = 'LabeledEdit3'
         OnChange = LabeledEdit3Change
