@@ -1,6 +1,6 @@
                                 MUGEN FONT FACTORY
 
-                                  Version 2.1.3
+                                  Version 2.1.4
 
                          This software made by Popov Evgeniy Alekseyevich
 
@@ -42,3 +42,4 @@ Change log
 2.1.1 - Small changes.
 2.1.2 - Small bug fixed.
 2.1.3 - The program adapted to new version of FNT RECONSTRUCTOR.
+2.1.4 - Small changes.

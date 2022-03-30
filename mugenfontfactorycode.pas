@@ -69,8 +69,7 @@ begin
  target:=source;
  if Pos(' ',source)>0 then
  begin
-  target:='"';
-  target:=target+source+'"';
+  target:='"'+target+source+'"';
  end;
  convert_file_name:=target;
 end;
@@ -89,7 +88,7 @@ end;
 procedure window_setup();
 begin
  Application.Title:='MUGEN FONT FACTORY';
- Form1.Caption:='MUGEN FONT FACTORY 2.1.3';
+ Form1.Caption:='MUGEN FONT FACTORY 2.1.4';
  Form1.BorderStyle:=bsDialog;
  Form1.Font.Name:=Screen.MenuFont.Name;
  Form1.Font.Size:=14;
@@ -165,19 +164,16 @@ end;
 procedure run_backend_tool(arguments:string);
 var error:SmallInt;
 var message: array[0..5] of string=('Operation successfully complete','Cant open input file','Cant create output file','Cant jump to target offset','Cant allocate memory','Invalid format');
-var job:string;
+var job,status:string;
 begin
+ status:='Cant execute a external program';
  job:=get_path()+'fntreconstructor';
  error:=execute_program(job,arguments);
- if error=-1 then
+ if error>=0 then
  begin
-  ShowMessage('Cant execute a external program');
- end
- else
- begin
-  ShowMessage(message[error]);
+  status:=message[error];
  end;
-
+ ShowMessage(status);
 end;
 
 procedure decompile_font(font:string);
