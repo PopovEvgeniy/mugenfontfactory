@@ -42,18 +42,6 @@ type
     { public declarations }
   end;
 
-function get_path(): string;
-function convert_file_name(source:string): string;
-function execute_program(executable:string;argument:string):Integer;
-procedure window_setup();
-procedure interface_setup();
-procedure set_text_source();
-procedure set_graphic_source();
-procedure set_font_source();
-procedure set_font_target();
-procedure run_backend_tool(arguments:string);
-procedure decompile_font(font:string);
-procedure compile_font(text:string;graphic:string;font:string);
 var Form1: TForm1;
 
 implementation
@@ -80,7 +68,7 @@ begin
  try
   code:=ExecuteProcess(executable,argument,[]);
  except
-  On EOSError do code:=-1;
+  code:=-1;
  end;
  execute_program:=code;
 end;
@@ -88,7 +76,7 @@ end;
 procedure window_setup();
 begin
  Application.Title:='MUGEN FONT FACTORY';
- Form1.Caption:='MUGEN FONT FACTORY 2.1.4';
+ Form1.Caption:='MUGEN FONT FACTORY 2.1.5';
  Form1.BorderStyle:=bsDialog;
  Form1.Font.Name:=Screen.MenuFont.Name;
  Form1.Font.Size:=14;
