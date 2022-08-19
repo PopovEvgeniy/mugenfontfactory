@@ -76,7 +76,7 @@ end;
 procedure window_setup();
 begin
  Application.Title:='MUGEN FONT FACTORY';
- Form1.Caption:='MUGEN FONT FACTORY 2.1.5';
+ Form1.Caption:='MUGEN FONT FACTORY 2.1.6';
  Form1.BorderStyle:=bsDialog;
  Form1.Font.Name:=Screen.MenuFont.Name;
  Form1.Font.Size:=14;
@@ -95,14 +95,18 @@ begin
  Form1.LabeledEdit1.Text:='';
  Form1.LabeledEdit2.Text:=Form1.LabeledEdit1.Text;
  Form1.LabeledEdit3.Text:=Form1.LabeledEdit1.Text;
- Form1.LabeledEdit1.EditLabel.Caption:='Text file';
- Form1.LabeledEdit2.EditLabel.Caption:='Graphic file';
- Form1.LabeledEdit3.EditLabel.Caption:='Font file';
  Form1.Button1.ShowHint:=True;
  Form1.Button2.ShowHint:=Form1.Button1.ShowHint;
  Form1.Button3.ShowHint:=Form1.Button1.ShowHint;
  Form1.Button4.ShowHint:=Form1.Button1.ShowHint;
  Form1.Button5.ShowHint:=Form1.Button1.ShowHint;
+end;
+
+procedure language_setup();
+begin
+ Form1.LabeledEdit1.EditLabel.Caption:='Text file';
+ Form1.LabeledEdit2.EditLabel.Caption:='Graphic file';
+ Form1.LabeledEdit3.EditLabel.Caption:='Font file';
  Form1.Button1.Caption:='Open';
  Form1.Button2.Caption:='Open';
  Form1.Button3.Caption:='Compile';
@@ -115,6 +119,13 @@ begin
  Form1.Button5.Hint:='Decompile a mugen font';
  Form1.PageControl1.Pages[0].Caption:='Compilation';
  Form1.PageControl1.Pages[1].Caption:='Decompilation';
+end;
+
+procedure setup();
+begin
+ window_setup();
+ interface_setup();
+ language_setup();
 end;
 
 procedure set_text_source();
@@ -154,7 +165,7 @@ var error:SmallInt;
 var message: array[0..5] of string=('Operation successfully complete','Cant open input file','Cant create output file','Cant jump to target offset','Cant allocate memory','Invalid format');
 var job,status:string;
 begin
- status:='Cant execute a external program';
+ status:='Cant execute an external program';
  job:=get_path()+'fntreconstructor';
  error:=execute_program(job,arguments);
  if error>=0 then
@@ -183,8 +194,7 @@ end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
- window_setup();
- interface_setup();
+ setup();
 end;
 
 procedure TForm1.LabeledEdit1Change(Sender: TObject);
