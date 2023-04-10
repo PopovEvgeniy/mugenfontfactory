@@ -5,7 +5,7 @@ unit mugenfontfactorycode;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Dialogs, ComCtrls,
+  Classes, SysUtils, Forms, Controls, Dialogs, ComCtrls,
   ExtCtrls, StdCtrls, LazFileUtils;
 
 type
@@ -46,23 +46,18 @@ var Form1: TForm1;
 
 implementation
 
-function get_path(): string;
-begin
- get_path:=ExtractFilePath(Application.ExeName);
-end;
-
-function convert_file_name(source:string): string;
+function convert_file_name(const source:string): string;
 var target:string;
 begin
  target:=source;
  if Pos(' ',source)>0 then
  begin
-  target:='"'+target+source+'"';
+  target:='"'+source+'"';
  end;
  convert_file_name:=target;
 end;
 
-function execute_program(executable:string;argument:string):Integer;
+function execute_program(const executable:string;const argument:string):Integer;
 var code:Integer;
 begin
  try
@@ -73,10 +68,38 @@ begin
  execute_program:=code;
 end;
 
+procedure run_backend_tool(const arguments:string);
+var error:SmallInt;
+var message: array[0..5] of string=('Operation successfully complete','Cant open input file','Cant create output file','Cant jump to target offset','Cant allocate memory','Invalid format');
+var job,status:string;
+begin
+ status:='Cant execute an external program';
+ job:=ExtractFilePath(Application.ExeName)+'fntreconstructor.exe';
+ error:=execute_program(job,arguments);
+ if error>=0 then
+ begin
+  status:=message[error];
+ end;
+ ShowMessage(status);
+end;
+
+procedure decompile_font(const font:string);
+begin
+ run_backend_tool(convert_file_name(font));
+end;
+
+procedure compile_font(const configuration:string;const graphic:string;const font:string);
+var target,job:string;
+begin
+ target:=ExtractFileNameWithoutExt(font)+'.fnt';
+ job:=convert_file_name(configuration)+' '+convert_file_name(graphic)+' '+convert_file_name(target);
+ run_backend_tool(job);
+end;
+
 procedure window_setup();
 begin
  Application.Title:='MUGEN FONT FACTORY';
- Form1.Caption:='MUGEN FONT FACTORY 2.1.6';
+ Form1.Caption:='MUGEN FONT FACTORY 2.1.7';
  Form1.BorderStyle:=bsDialog;
  Form1.Font.Name:=Screen.MenuFont.Name;
  Form1.Font.Size:=14;
@@ -158,34 +181,6 @@ begin
  Form1.SaveDialog1.DefaultExt:='*.fnt';
  Form1.SaveDialog1.FileName:='*.fnt';
  Form1.SaveDialog1.Filter:='Mugen font|*.fnt';
-end;
-
-procedure run_backend_tool(arguments:string);
-var error:SmallInt;
-var message: array[0..5] of string=('Operation successfully complete','Cant open input file','Cant create output file','Cant jump to target offset','Cant allocate memory','Invalid format');
-var job,status:string;
-begin
- status:='Cant execute an external program';
- job:=get_path()+'fntreconstructor';
- error:=execute_program(job,arguments);
- if error>=0 then
- begin
-  status:=message[error];
- end;
- ShowMessage(status);
-end;
-
-procedure decompile_font(font:string);
-begin
- run_backend_tool(convert_file_name(font));
-end;
-
-procedure compile_font(text:string;graphic:string;font:string);
-var target,job:string;
-begin
- target:=ExtractFileNameWithoutExt(font)+'.fnt';
- job:=convert_file_name(text)+' '+convert_file_name(graphic)+' '+convert_file_name(target);
- run_backend_tool(job);
 end;
 
 {$R *.lfm}
