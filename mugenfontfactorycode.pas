@@ -35,7 +35,6 @@ type
     procedure LabeledEdit1Change(Sender: TObject);
     procedure LabeledEdit2Change(Sender: TObject);
     procedure LabeledEdit3Change(Sender: TObject);
-    procedure SaveDialog1CanClose(Sender: TObject; var CanClose: boolean);
   private
     { private declarations }
   public
@@ -99,7 +98,7 @@ end;
 procedure window_setup();
 begin
  Application.Title:='MUGEN FONT FACTORY';
- Form1.Caption:='MUGEN FONT FACTORY 2.1.7';
+ Form1.Caption:='MUGEN FONT FACTORY 2.1.9';
  Form1.BorderStyle:=bsDialog;
  Form1.Font.Name:=Screen.MenuFont.Name;
  Form1.Font.Size:=14;
@@ -151,38 +150,6 @@ begin
  language_setup();
 end;
 
-procedure set_text_source();
-begin
- Form1.OpenDialog1.Title:='Open a source text file';
- Form1.OpenDialog1.DefaultExt:='*.txt';
- Form1.OpenDialog1.FileName:='*.txt';
- Form1.OpenDialog1.Filter:='Text files|*.txt';
-end;
-
-procedure set_graphic_source();
-begin
- Form1.OpenDialog1.Title:='Open a source graphic file';
- Form1.OpenDialog1.DefaultExt:='*.pcx';
- Form1.OpenDialog1.FileName:='*.pcx';
- Form1.OpenDialog1.Filter:='PC PaintBrush image|*.pcx';
-end;
-
-procedure set_font_source();
-begin
- Form1.OpenDialog1.Title:='Open a source mugen font';
- Form1.OpenDialog1.DefaultExt:='*.fnt';
- Form1.OpenDialog1.FileName:='*.fnt';
- Form1.OpenDialog1.Filter:='Mugen font|*.fnt';
-end;
-
-procedure set_font_target();
-begin
- Form1.SaveDialog1.Title:='Save a target mugen font';
- Form1.SaveDialog1.DefaultExt:='*.fnt';
- Form1.SaveDialog1.FileName:='*.fnt';
- Form1.SaveDialog1.Filter:='Mugen font|*.fnt';
-end;
-
 {$R *.lfm}
 
 { TForm1 }
@@ -207,14 +174,12 @@ begin
  Form1.Button5.Enabled:=Form1.LabeledEdit3.Text<>'';
 end;
 
-procedure TForm1.SaveDialog1CanClose(Sender: TObject; var CanClose: boolean);
-begin
- compile_font(Form1.LabeledEdit1.Text,Form1.LabeledEdit2.Text,Form1.SaveDialog1.FileName);
-end;
-
 procedure TForm1.Button1Click(Sender: TObject);
 begin
- set_text_source();
+ Form1.OpenDialog1.Title:='Open a source text file';
+ Form1.OpenDialog1.DefaultExt:='*.txt';
+ Form1.OpenDialog1.FileName:='*.txt';
+ Form1.OpenDialog1.Filter:='Text files|*.txt';
  if Form1.OpenDialog1.Execute()=True then
  begin
   Form1.LabeledEdit1.Text:=Form1.OpenDialog1.FileName;
@@ -224,7 +189,10 @@ end;
 
 procedure TForm1.Button2Click(Sender: TObject);
 begin
- set_graphic_source();
+ Form1.OpenDialog1.Title:='Open a source graphic file';
+ Form1.OpenDialog1.DefaultExt:='*.pcx';
+ Form1.OpenDialog1.FileName:='*.pcx';
+ Form1.OpenDialog1.Filter:='PC PaintBrush image|*.pcx';
  if Form1.OpenDialog1.Execute()=True then
  begin
   Form1.LabeledEdit2.Text:=Form1.OpenDialog1.FileName;
@@ -234,13 +202,23 @@ end;
 
 procedure TForm1.Button3Click(Sender: TObject);
 begin
- set_font_target();
- Form1.SaveDialog1.Execute();
+ Form1.SaveDialog1.Title:='Save a target mugen font';
+ Form1.SaveDialog1.DefaultExt:='*.fnt';
+ Form1.SaveDialog1.FileName:='*.fnt';
+ Form1.SaveDialog1.Filter:='Mugen font|*.fnt';
+ if Form1.SaveDialog1.Execute()=True then
+ begin
+  compile_font(Form1.LabeledEdit1.Text,Form1.LabeledEdit2.Text,Form1.SaveDialog1.FileName);
+ end;
+
 end;
 
 procedure TForm1.Button4Click(Sender: TObject);
 begin
- set_font_source();
+ Form1.OpenDialog1.Title:='Open a source mugen font';
+ Form1.OpenDialog1.DefaultExt:='*.fnt';
+ Form1.OpenDialog1.FileName:='*.fnt';
+ Form1.OpenDialog1.Filter:='Mugen font|*.fnt';
  if Form1.OpenDialog1.Execute()=True then
  begin
   Form1.LabeledEdit3.Text:=Form1.OpenDialog1.FileName;

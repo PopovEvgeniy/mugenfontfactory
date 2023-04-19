@@ -116,7 +116,6 @@ object Form1: TForm1
     Top = 192
   end
   object SaveDialog1: TSaveDialog
-    OnCanClose = SaveDialog1CanClose
     Left = 92
     Top = 192
   end
