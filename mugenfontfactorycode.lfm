@@ -7,7 +7,7 @@ object Form1: TForm1
   ClientHeight = 189
   ClientWidth = 374
   OnCreate = FormCreate
-  LCLVersion = '2.2.6.0'
+  LCLVersion = '3.6.0.0'
   object PageControl1: TPageControl
     Left = 0
     Height = 192
@@ -52,8 +52,8 @@ object Form1: TForm1
         Top = 20
         Width = 75
         Caption = 'Button1'
-        OnClick = Button1Click
         TabOrder = 2
+        OnClick = Button1Click
       end
       object Button2: TButton
         Left = 270
@@ -61,8 +61,8 @@ object Form1: TForm1
         Top = 72
         Width = 75
         Caption = 'Button2'
-        OnClick = Button2Click
         TabOrder = 3
+        OnClick = Button2Click
       end
       object Button3: TButton
         Left = 136
@@ -70,8 +70,8 @@ object Form1: TForm1
         Top = 112
         Width = 99
         Caption = 'Button3'
-        OnClick = Button3Click
         TabOrder = 4
+        OnClick = Button3Click
       end
     end
     object TabSheet2: TTabSheet
@@ -97,8 +97,8 @@ object Form1: TForm1
         Top = 24
         Width = 75
         Caption = 'Button4'
-        OnClick = Button4Click
         TabOrder = 1
+        OnClick = Button4Click
       end
       object Button5: TButton
         Left = 120
@@ -106,8 +106,8 @@ object Form1: TForm1
         Top = 72
         Width = 104
         Caption = 'Button5'
-        OnClick = Button5Click
         TabOrder = 2
+        OnClick = Button5Click
       end
     end
   end

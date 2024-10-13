@@ -69,7 +69,7 @@ end;
 
 procedure run_backend_tool(const arguments:string);
 var error:SmallInt;
-var message: array[0..5] of string=('Operation successfully complete','Cant open input file','Cant create output file','Cant jump to target offset','Cant allocate memory','Invalid format');
+var message: array[0..5] of string=('Operation was successfully completed','Cant open the input file','Cant create the output file','Cant jump to the target offset','Cant allocate memory','Invalid format');
 var job,status:string;
 begin
  status:='Cant execute an external program';
@@ -98,7 +98,7 @@ end;
 procedure window_setup();
 begin
  Application.Title:='MUGEN FONT FACTORY';
- Form1.Caption:='MUGEN FONT FACTORY 2.1.9';
+ Form1.Caption:='MUGEN FONT FACTORY 2.2';
  Form1.BorderStyle:=bsDialog;
  Form1.Font.Name:=Screen.MenuFont.Name;
  Form1.Font.Size:=14;
@@ -126,9 +126,9 @@ end;
 
 procedure language_setup();
 begin
- Form1.LabeledEdit1.EditLabel.Caption:='Text file';
- Form1.LabeledEdit2.EditLabel.Caption:='Graphic file';
- Form1.LabeledEdit3.EditLabel.Caption:='Font file';
+ Form1.LabeledEdit1.EditLabel.Caption:='A text file';
+ Form1.LabeledEdit2.EditLabel.Caption:='A graphics file';
+ Form1.LabeledEdit3.EditLabel.Caption:='The font file';
  Form1.Button1.Caption:='Open';
  Form1.Button2.Caption:='Open';
  Form1.Button3.Caption:='Compile';
@@ -179,7 +179,7 @@ begin
  Form1.OpenDialog1.Title:='Open a source text file';
  Form1.OpenDialog1.DefaultExt:='*.txt';
  Form1.OpenDialog1.FileName:='*.txt';
- Form1.OpenDialog1.Filter:='Text files|*.txt';
+ Form1.OpenDialog1.Filter:='A text files|*.txt';
  if Form1.OpenDialog1.Execute()=True then
  begin
   Form1.LabeledEdit1.Text:=Form1.OpenDialog1.FileName;
