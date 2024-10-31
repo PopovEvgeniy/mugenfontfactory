@@ -98,7 +98,7 @@ end;
 procedure window_setup();
 begin
  Application.Title:='MUGEN FONT FACTORY';
- Form1.Caption:='MUGEN FONT FACTORY 2.2';
+ Form1.Caption:='MUGEN FONT FACTORY 2.2.1';
  Form1.BorderStyle:=bsDialog;
  Form1.Font.Name:=Screen.MenuFont.Name;
  Form1.Font.Size:=14;
