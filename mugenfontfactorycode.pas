@@ -10,38 +10,38 @@ uses
 
 type
 
-  { TForm1 }
+  { TMainWindow }
 
-  TForm1 = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
-    Button5: TButton;
-    LabeledEdit1: TLabeledEdit;
-    LabeledEdit2: TLabeledEdit;
-    LabeledEdit3: TLabeledEdit;
-    OpenDialog1: TOpenDialog;
-    PageControl1: TPageControl;
-    SaveDialog1: TSaveDialog;
-    TabSheet1: TTabSheet;
-    TabSheet2: TTabSheet;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
-    procedure Button4Click(Sender: TObject);
-    procedure Button5Click(Sender: TObject);
+  TMainWindow = class(TForm)
+    OpenTxtButton: TButton;
+    OpenPcxButton: TButton;
+    CompileButton: TButton;
+    OpenFntButton: TButton;
+    DecompileButton: TButton;
+    TxtField: TLabeledEdit;
+    PcxField: TLabeledEdit;
+    FntField: TLabeledEdit;
+    OpenDialog: TOpenDialog;
+    WorkSpace: TPageControl;
+    SaveDialog: TSaveDialog;
+    CompilationSheet: TTabSheet;
+    DecompilationSheet: TTabSheet;
+    procedure OpenTxtButtonClick(Sender: TObject);
+    procedure OpenPcxButtonClick(Sender: TObject);
+    procedure CompileButtonClick(Sender: TObject);
+    procedure OpenFntButtonClick(Sender: TObject);
+    procedure DecompileButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure LabeledEdit1Change(Sender: TObject);
-    procedure LabeledEdit2Change(Sender: TObject);
-    procedure LabeledEdit3Change(Sender: TObject);
+    procedure TxtFieldChange(Sender: TObject);
+    procedure PcxFieldChange(Sender: TObject);
+    procedure FntFieldChange(Sender: TObject);
   private
     { private declarations }
   public
     { public declarations }
   end;
 
-var Form1: TForm1;
+var MainWindow: TMainWindow;
 
 implementation
 
@@ -69,7 +69,7 @@ end;
 
 procedure run_backend_tool(const arguments:string);
 var error:SmallInt;
-var message: array[0..5] of string=('Operation was successfully completed','Cant open the input file','Cant create the output file','Cant jump to the target offset','Cant allocate memory','Invalid format');
+var message: array[0..5] of string=('The operation was successfully completed','Cant open the input file','Cant create the output file','Cant jump to the target offset','Cant allocate memory','Invalid format');
 var job,status:string;
 begin
  status:='Cant execute an external program';
@@ -98,49 +98,44 @@ end;
 procedure window_setup();
 begin
  Application.Title:='MUGEN FONT FACTORY';
- Form1.Caption:='MUGEN FONT FACTORY 2.2.1';
- Form1.BorderStyle:=bsDialog;
- Form1.Font.Name:=Screen.MenuFont.Name;
- Form1.Font.Size:=14;
+ MainWindow.Caption:='MUGEN FONT FACTORY 2.2.3';
+ MainWindow.BorderStyle:=bsDialog;
+ MainWindow.Font.Name:=Screen.MenuFont.Name;
+ MainWindow.Font.Size:=14;
 end;
 
 procedure interface_setup();
 begin
- Form1.LabeledEdit1.LabelPosition:=lpLeft;
- Form1.LabeledEdit2.LabelPosition:=Form1.LabeledEdit1.LabelPosition;
- Form1.LabeledEdit3.LabelPosition:=Form1.LabeledEdit1.LabelPosition;
- Form1.LabeledEdit1.Enabled:=False;
- Form1.LabeledEdit2.Enabled:=Form1.LabeledEdit1.Enabled;
- Form1.LabeledEdit3.Enabled:=Form1.LabeledEdit1.Enabled;
- Form1.Button3.Enabled:=False;
- Form1.Button5.Enabled:=Form1.Button3.Enabled;
- Form1.LabeledEdit1.Text:='';
- Form1.LabeledEdit2.Text:=Form1.LabeledEdit1.Text;
- Form1.LabeledEdit3.Text:=Form1.LabeledEdit1.Text;
- Form1.Button1.ShowHint:=True;
- Form1.Button2.ShowHint:=Form1.Button1.ShowHint;
- Form1.Button3.ShowHint:=Form1.Button1.ShowHint;
- Form1.Button4.ShowHint:=Form1.Button1.ShowHint;
- Form1.Button5.ShowHint:=Form1.Button1.ShowHint;
+ MainWindow.TxtField.LabelPosition:=lpLeft;
+ MainWindow.PcxField.LabelPosition:=MainWindow.TxtField.LabelPosition;
+ MainWindow.FntField.LabelPosition:=MainWindow.TxtField.LabelPosition;
+ MainWindow.TxtField.Enabled:=False;
+ MainWindow.PcxField.Enabled:=MainWindow.TxtField.Enabled;
+ MainWindow.FntField.Enabled:=MainWindow.TxtField.Enabled;
+ MainWindow.CompileButton.Enabled:=False;
+ MainWindow.DecompileButton.Enabled:=MainWindow.CompileButton.Enabled;
+ MainWindow.TxtField.Text:='';
+ MainWindow.PcxField.Text:=MainWindow.TxtField.Text;
+ MainWindow.FntField.Text:=MainWindow.TxtField.Text;
+ MainWindow.OpenTxtButton.ShowHint:=False;
+ MainWindow.OpenPcxButton.ShowHint:=MainWindow.OpenTxtButton.ShowHint;
+ MainWindow.CompileButton.ShowHint:=MainWindow.OpenTxtButton.ShowHint;
+ MainWindow.OpenFntButton.ShowHint:=MainWindow.OpenTxtButton.ShowHint;
+ MainWindow.DecompileButton.ShowHint:=MainWindow.OpenTxtButton.ShowHint;
 end;
 
 procedure language_setup();
 begin
- Form1.LabeledEdit1.EditLabel.Caption:='A text file';
- Form1.LabeledEdit2.EditLabel.Caption:='A graphics file';
- Form1.LabeledEdit3.EditLabel.Caption:='The font file';
- Form1.Button1.Caption:='Open';
- Form1.Button2.Caption:='Open';
- Form1.Button3.Caption:='Compile';
- Form1.Button4.Caption:='Open';
- Form1.Button5.Caption:='Decompile';
- Form1.Button1.Hint:='Set a source graphic file';
- Form1.Button2.Hint:='Set a source text file';
- Form1.Button3.Hint:='Compile a mugen font';
- Form1.Button4.Hint:='Open a target mugen font';
- Form1.Button5.Hint:='Decompile a mugen font';
- Form1.PageControl1.Pages[0].Caption:='Compilation';
- Form1.PageControl1.Pages[1].Caption:='Decompilation';
+ MainWindow.TxtField.EditLabel.Caption:='A text file';
+ MainWindow.PcxField.EditLabel.Caption:='A graphic file';
+ MainWindow.FntField.EditLabel.Caption:='The font file';
+ MainWindow.OpenTxtButton.Caption:='Open';
+ MainWindow.OpenPcxButton.Caption:='Open';
+ MainWindow.CompileButton.Caption:='Compile';
+ MainWindow.OpenFntButton.Caption:='Open';
+ MainWindow.DecompileButton.Caption:='Decompile';
+ MainWindow.WorkSpace.Pages[0].Caption:='Compilation';
+ MainWindow.WorkSpace.Pages[1].Caption:='Decompilation';
 end;
 
 procedure setup();
@@ -152,83 +147,83 @@ end;
 
 {$R *.lfm}
 
-{ TForm1 }
+{ TMainWindow }
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TMainWindow.FormCreate(Sender: TObject);
 begin
  setup();
 end;
 
-procedure TForm1.LabeledEdit1Change(Sender: TObject);
+procedure TMainWindow.TxtFieldChange(Sender: TObject);
 begin
- Form1.Button3.Enabled:=(Form1.LabeledEdit1.Text<>'') and (Form1.LabeledEdit2.Text<>'');
+ MainWindow.CompileButton.Enabled:=(MainWindow.TxtField.Text<>'') and (MainWindow.PcxField.Text<>'');
 end;
 
-procedure TForm1.LabeledEdit2Change(Sender: TObject);
+procedure TMainWindow.PcxFieldChange(Sender: TObject);
 begin
- Form1.Button3.Enabled:=(Form1.LabeledEdit1.Text<>'') and (Form1.LabeledEdit2.Text<>'');
+ MainWindow.CompileButton.Enabled:=(MainWindow.TxtField.Text<>'') and (MainWindow.PcxField.Text<>'');
 end;
 
-procedure TForm1.LabeledEdit3Change(Sender: TObject);
+procedure TMainWindow.FntFieldChange(Sender: TObject);
 begin
- Form1.Button5.Enabled:=Form1.LabeledEdit3.Text<>'';
+ MainWindow.DecompileButton.Enabled:=MainWindow.FntField.Text<>'';
 end;
 
-procedure TForm1.Button1Click(Sender: TObject);
+procedure TMainWindow.OpenTxtButtonClick(Sender: TObject);
 begin
- Form1.OpenDialog1.Title:='Open a source text file';
- Form1.OpenDialog1.DefaultExt:='*.txt';
- Form1.OpenDialog1.FileName:='*.txt';
- Form1.OpenDialog1.Filter:='A text files|*.txt';
- if Form1.OpenDialog1.Execute()=True then
+ MainWindow.OpenDialog.Title:='Open a source text file';
+ MainWindow.OpenDialog.DefaultExt:='*.txt';
+ MainWindow.OpenDialog.FileName:='*.txt';
+ MainWindow.OpenDialog.Filter:='A text files|*.txt';
+ if MainWindow.OpenDialog.Execute()=True then
  begin
-  Form1.LabeledEdit1.Text:=Form1.OpenDialog1.FileName;
+  MainWindow.TxtField.Text:=MainWindow.OpenDialog.FileName;
  end;
 
 end;
 
-procedure TForm1.Button2Click(Sender: TObject);
+procedure TMainWindow.OpenPcxButtonClick(Sender: TObject);
 begin
- Form1.OpenDialog1.Title:='Open a source graphic file';
- Form1.OpenDialog1.DefaultExt:='*.pcx';
- Form1.OpenDialog1.FileName:='*.pcx';
- Form1.OpenDialog1.Filter:='PC PaintBrush image|*.pcx';
- if Form1.OpenDialog1.Execute()=True then
+ MainWindow.OpenDialog.Title:='Open a source graphic file';
+ MainWindow.OpenDialog.DefaultExt:='*.pcx';
+ MainWindow.OpenDialog.FileName:='*.pcx';
+ MainWindow.OpenDialog.Filter:='PC PaintBrush image|*.pcx';
+ if MainWindow.OpenDialog.Execute()=True then
  begin
-  Form1.LabeledEdit2.Text:=Form1.OpenDialog1.FileName;
+  MainWindow.PcxField.Text:=MainWindow.OpenDialog.FileName;
  end;
 
 end;
 
-procedure TForm1.Button3Click(Sender: TObject);
+procedure TMainWindow.CompileButtonClick(Sender: TObject);
 begin
- Form1.SaveDialog1.Title:='Save a target mugen font';
- Form1.SaveDialog1.DefaultExt:='*.fnt';
- Form1.SaveDialog1.FileName:='*.fnt';
- Form1.SaveDialog1.Filter:='Mugen font|*.fnt';
- if Form1.SaveDialog1.Execute()=True then
+ MainWindow.SaveDialog.Title:='Save a target mugen font';
+ MainWindow.SaveDialog.DefaultExt:='*.fnt';
+ MainWindow.SaveDialog.FileName:='*.fnt';
+ MainWindow.SaveDialog.Filter:='Mugen font|*.fnt';
+ if MainWindow.SaveDialog.Execute()=True then
  begin
-  compile_font(Form1.LabeledEdit1.Text,Form1.LabeledEdit2.Text,Form1.SaveDialog1.FileName);
+  compile_font(MainWindow.TxtField.Text,MainWindow.PcxField.Text,MainWindow.SaveDialog.FileName);
  end;
 
 end;
 
-procedure TForm1.Button4Click(Sender: TObject);
+procedure TMainWindow.OpenFntButtonClick(Sender: TObject);
 begin
- Form1.OpenDialog1.Title:='Open a source mugen font';
- Form1.OpenDialog1.DefaultExt:='*.fnt';
- Form1.OpenDialog1.FileName:='*.fnt';
- Form1.OpenDialog1.Filter:='Mugen font|*.fnt';
- if Form1.OpenDialog1.Execute()=True then
+ MainWindow.OpenDialog.Title:='Open a source mugen font';
+ MainWindow.OpenDialog.DefaultExt:='*.fnt';
+ MainWindow.OpenDialog.FileName:='*.fnt';
+ MainWindow.OpenDialog.Filter:='Mugen font|*.fnt';
+ if MainWindow.OpenDialog.Execute()=True then
  begin
-  Form1.LabeledEdit3.Text:=Form1.OpenDialog1.FileName;
+  MainWindow.FntField.Text:=MainWindow.OpenDialog.FileName;
  end;
 
 end;
 
-procedure TForm1.Button5Click(Sender: TObject);
+procedure TMainWindow.DecompileButtonClick(Sender: TObject);
 begin
- decompile_font(Form1.LabeledEdit3.Text);
+ decompile_font(MainWindow.FntField.Text);
 end;
 
 end.
