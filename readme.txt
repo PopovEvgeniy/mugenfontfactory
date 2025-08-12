@@ -1,6 +1,6 @@
                                 MUGEN FONT FACTORY
 
-                                  Version 2.2.3
+                                  Version 2.2.3.1
 
                          This software was made by Popov Evgeniy Alekseyevich
 
@@ -15,15 +15,11 @@ This program is a graphic shell for FNT RECONSTRUCTOR.
 
 License
 
-This program is distributed under GNU GENERAL PUBLIC LICENSE.
+This program is distributed under the GNU GENERAL PUBLIC LICENSE.
 
 Prepare
 
 Put the executable file of FNT RECONSTRUCTOR in the MUGEN FONT FACTORY directory before the first start.
-
-Contact
-
-You can send me a letter at tuzik87@inbox.ru.
 
 About program modification
 
@@ -51,3 +47,4 @@ Change log
 2.2.1: The source code was recompiled under Lazarus 4.0 RC1.
 2.2.2: The source code was recompiled under Lazarus 4.0 RC3.
 2.2.3: The small changes.
+2.2.3.1: The documentation has been updated.
