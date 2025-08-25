@@ -69,7 +69,7 @@ end;
 
 procedure run_backend_tool(const arguments:string);
 var error:SmallInt;
-var message: array[0..5] of string=('The operation was successfully completed','Cant open the input file','Cant create the output file','Cant jump to the target offset','Cant allocate memory','Invalid format');
+var message: array[0..5] of string=('The operation was successfully completed','Cant open the input file','Cant create the output file','Cant jump to the target offset','Cant allocate memory','The invalid format');
 var job,status:string;
 begin
  status:='Cant execute an external program';
@@ -98,7 +98,7 @@ end;
 procedure window_setup();
 begin
  Application.Title:='MUGEN FONT FACTORY';
- MainWindow.Caption:='MUGEN FONT FACTORY 2.2.3';
+ MainWindow.Caption:='MUGEN FONT FACTORY 2.2.4';
  MainWindow.BorderStyle:=bsDialog;
  MainWindow.Font.Name:=Screen.MenuFont.Name;
  MainWindow.Font.Size:=14;

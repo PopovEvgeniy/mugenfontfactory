@@ -6,7 +6,7 @@ object MainWindow: TMainWindow
   Caption = 'MUGEN FONT FACTORY'
   ClientHeight = 189
   ClientWidth = 383
-  LCLVersion = '4.0.0.3'
+  LCLVersion = '4.2.0.0'
   OnCreate = FormCreate
   object WorkSpace: TPageControl
     Left = 0
