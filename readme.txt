@@ -1,37 +1,34 @@
                                 MUGEN FONT FACTORY
 
-                                  Version 2.2.4
+                                  Version 2.2.4.1
 
                          This software was made by Popov Evgeniy Alekseyevich
 
-System requirements
+System requirements.
 
 Windows 2000 or higher for 32-bit systems
 Windows Vista or higher for 64-bit systems
 
-Program description
+The program description.
 
 This program is a graphic shell for FNT RECONSTRUCTOR.
+Put the executable file of FNT RECONSTRUCTOR in the MUGEN FONT FACTORY directory before the first start.
 
-License
+License.
 
 This program is distributed under the GNU GENERAL PUBLIC LICENSE.
 
-Prepare
-
-Put the executable file of FNT RECONSTRUCTOR in the MUGEN FONT FACTORY directory before the first start.
-
-About program modification
+The source code.
 
 The code is included in the source.zip archive.
 It can be compiled under Lazarus 4.2 or higher.
 
-Change log
+Version history.
 
 1.0-2.0.4: The old builds.
 2.0.5: The program was totally rewritten.
 2.0.6: The small changes. Windows 9x support has been dropped.
-2.0.7: A 64-bit system support has been added.
+2.0.7: A 64-bit support has been added.
 2.0.8: The small changes.
 2.0.9: The source code has been adapted to the new version of Lazarus.
 2.1: The program has been adapted to the new version of FNT RECONSTRUCTOR.
@@ -49,3 +46,4 @@ Change log
 2.2.3: The small changes.
 2.2.3.1: The documentation has been updated.
 2.2.4: The small changes.
+2.2.4.1: The documentation has been updated.
