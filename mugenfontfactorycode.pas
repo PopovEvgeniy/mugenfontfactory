@@ -91,14 +91,14 @@ procedure compile_font(const configuration:string;const graphic:string;const fon
 var target,job:string;
 begin
  target:=ExtractFileNameWithoutExt(font)+'.fnt';
- job:=convert_file_name(configuration)+' '+convert_file_name(graphic)+' '+convert_file_name(target);
+ job:=convert_file_name(graphic)+' '+convert_file_name(configuration)+' '+convert_file_name(target);
  run_backend_tool(job);
 end;
 
 procedure window_setup();
 begin
  Application.Title:='MUGEN FONT FACTORY';
- MainWindow.Caption:='MUGEN FONT FACTORY 2.2.4';
+ MainWindow.Caption:='MUGEN FONT FACTORY 2.2.5';
  MainWindow.BorderStyle:=bsDialog;
  MainWindow.Font.Name:=Screen.MenuFont.Name;
  MainWindow.Font.Size:=14;
