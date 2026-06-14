@@ -1,12 +1,16 @@
 unit mugenfontfactorycode;
 
-{$mode objfpc}{$H+}
+{
+ This software was made by Popov Evgeniy Alekseyevich.
+ It is distributed under the GNU GENERAL PUBLIC LICENSE (Version 2 or higher).
+}
+
+{$mode objfpc}
+{$H+}
 
 interface
 
-uses
-  Classes, SysUtils, Forms, Controls, Dialogs, ComCtrls,
-  ExtCtrls, StdCtrls, LazFileUtils;
+uses Classes, SysUtils, Forms, Controls, Dialogs, ComCtrls, ExtCtrls, StdCtrls, LazFileUtils;
 
 type
 
@@ -36,7 +40,10 @@ type
     procedure PcxFieldChange(Sender: TObject);
     procedure FntFieldChange(Sender: TObject);
   private
-    { private declarations }
+    procedure window_setup();
+    procedure interface_setup();
+    procedure language_setup();
+    procedure setup();
   public
     { public declarations }
   end;
@@ -95,54 +102,54 @@ begin
  run_backend_tool(job);
 end;
 
-procedure window_setup();
+procedure TMainWindow.window_setup();
 begin
  Application.Title:='MUGEN FONT FACTORY';
- MainWindow.Caption:='MUGEN FONT FACTORY 2.2.6';
- MainWindow.BorderStyle:=bsDialog;
- MainWindow.Font.Name:=Screen.MenuFont.Name;
- MainWindow.Font.Size:=14;
+ MainWindow.Caption:='MUGEN FONT FACTORY 2.2.7';
+ Self.BorderStyle:=bsDialog;
+ Self.Font.Name:=Screen.MenuFont.Name;
+ Self.Font.Size:=14;
 end;
 
-procedure interface_setup();
+procedure TMainWindow.interface_setup();
 begin
- MainWindow.TxtField.LabelPosition:=lpLeft;
- MainWindow.PcxField.LabelPosition:=MainWindow.TxtField.LabelPosition;
- MainWindow.FntField.LabelPosition:=MainWindow.TxtField.LabelPosition;
- MainWindow.TxtField.Enabled:=False;
- MainWindow.PcxField.Enabled:=MainWindow.TxtField.Enabled;
- MainWindow.FntField.Enabled:=MainWindow.TxtField.Enabled;
- MainWindow.CompileButton.Enabled:=False;
- MainWindow.DecompileButton.Enabled:=MainWindow.CompileButton.Enabled;
- MainWindow.TxtField.Text:='';
- MainWindow.PcxField.Text:=MainWindow.TxtField.Text;
- MainWindow.FntField.Text:=MainWindow.TxtField.Text;
- MainWindow.OpenTxtButton.ShowHint:=False;
- MainWindow.OpenPcxButton.ShowHint:=MainWindow.OpenTxtButton.ShowHint;
- MainWindow.CompileButton.ShowHint:=MainWindow.OpenTxtButton.ShowHint;
- MainWindow.OpenFntButton.ShowHint:=MainWindow.OpenTxtButton.ShowHint;
- MainWindow.DecompileButton.ShowHint:=MainWindow.OpenTxtButton.ShowHint;
+ Self.TxtField.LabelPosition:=lpLeft;
+ Self.PcxField.LabelPosition:=lpLeft;
+ Self.FntField.LabelPosition:=lpLeft;
+ Self.TxtField.Enabled:=False;
+ Self.PcxField.Enabled:=False;
+ Self.FntField.Enabled:=False;
+ Self.CompileButton.Enabled:=False;
+ Self.DecompileButton.Enabled:=False;
+ Self.TxtField.Text:='';
+ Self.PcxField.Text:='';
+ Self.FntField.Text:='';
+ Self.OpenTxtButton.ShowHint:=False;
+ Self.OpenPcxButton.ShowHint:=False;
+ Self.CompileButton.ShowHint:=False;
+ Self.OpenFntButton.ShowHint:=False;
+ Self.DecompileButton.ShowHint:=False;
 end;
 
-procedure language_setup();
+procedure TMainWindow.language_setup();
 begin
- MainWindow.TxtField.EditLabel.Caption:='A text file';
- MainWindow.PcxField.EditLabel.Caption:='A graphic file';
- MainWindow.FntField.EditLabel.Caption:='The font file';
- MainWindow.OpenTxtButton.Caption:='Open';
- MainWindow.OpenPcxButton.Caption:='Open';
- MainWindow.CompileButton.Caption:='Compile';
- MainWindow.OpenFntButton.Caption:='Open';
- MainWindow.DecompileButton.Caption:='Decompile';
- MainWindow.WorkSpace.Pages[0].Caption:='Compilation';
- MainWindow.WorkSpace.Pages[1].Caption:='Decompilation';
+ Self.TxtField.EditLabel.Caption:='A text file';
+ Self.PcxField.EditLabel.Caption:='A graphic file';
+ Self.FntField.EditLabel.Caption:='The font file';
+ Self.OpenTxtButton.Caption:='Open';
+ Self.OpenPcxButton.Caption:='Open';
+ Self.CompileButton.Caption:='Compile';
+ Self.OpenFntButton.Caption:='Open';
+ Self.DecompileButton.Caption:='Decompile';
+ Self.WorkSpace.Pages[0].Caption:='Compilation';
+ Self.WorkSpace.Pages[1].Caption:='Decompilation';
 end;
 
-procedure setup();
+procedure TMainWindow.setup();
 begin
- window_setup();
- interface_setup();
- language_setup();
+ Self.window_setup();
+ Self.interface_setup();
+ Self.language_setup();
 end;
 
 {$R *.lfm}
@@ -151,79 +158,79 @@ end;
 
 procedure TMainWindow.FormCreate(Sender: TObject);
 begin
- setup();
+ Self.setup();
 end;
 
 procedure TMainWindow.TxtFieldChange(Sender: TObject);
 begin
- MainWindow.CompileButton.Enabled:=(MainWindow.TxtField.Text<>'') and (MainWindow.PcxField.Text<>'');
+ Self.CompileButton.Enabled:=(Self.TxtField.Text<>'') and (Self.PcxField.Text<>'');
 end;
 
 procedure TMainWindow.PcxFieldChange(Sender: TObject);
 begin
- MainWindow.CompileButton.Enabled:=(MainWindow.TxtField.Text<>'') and (MainWindow.PcxField.Text<>'');
+ Self.CompileButton.Enabled:=(Self.TxtField.Text<>'') and (Self.PcxField.Text<>'');
 end;
 
 procedure TMainWindow.FntFieldChange(Sender: TObject);
 begin
- MainWindow.DecompileButton.Enabled:=MainWindow.FntField.Text<>'';
+ Self.DecompileButton.Enabled:=Self.FntField.Text<>'';
 end;
 
 procedure TMainWindow.OpenTxtButtonClick(Sender: TObject);
 begin
- MainWindow.OpenDialog.Title:='Open a source text file';
- MainWindow.OpenDialog.DefaultExt:='*.txt';
- MainWindow.OpenDialog.FileName:='*.txt';
- MainWindow.OpenDialog.Filter:='A text files|*.txt';
- if MainWindow.OpenDialog.Execute()=True then
+ Self.OpenDialog.Title:='Open a source text file';
+ Self.OpenDialog.DefaultExt:='*.txt';
+ Self.OpenDialog.FileName:='*.txt';
+ Self.OpenDialog.Filter:='A text files|*.txt';
+ if Self.OpenDialog.Execute()=True then
  begin
-  MainWindow.TxtField.Text:=MainWindow.OpenDialog.FileName;
+  Self.TxtField.Text:=Self.OpenDialog.FileName;
  end;
 
 end;
 
 procedure TMainWindow.OpenPcxButtonClick(Sender: TObject);
 begin
- MainWindow.OpenDialog.Title:='Open a source graphic file';
- MainWindow.OpenDialog.DefaultExt:='*.pcx';
- MainWindow.OpenDialog.FileName:='*.pcx';
- MainWindow.OpenDialog.Filter:='PC PaintBrush image|*.pcx';
- if MainWindow.OpenDialog.Execute()=True then
+ Self.OpenDialog.Title:='Open a source graphic file';
+ Self.OpenDialog.DefaultExt:='*.pcx';
+ Self.OpenDialog.FileName:='*.pcx';
+ Self.OpenDialog.Filter:='PC PaintBrush image|*.pcx';
+ if Self.OpenDialog.Execute()=True then
  begin
-  MainWindow.PcxField.Text:=MainWindow.OpenDialog.FileName;
+  Self.PcxField.Text:=Self.OpenDialog.FileName;
  end;
 
 end;
 
 procedure TMainWindow.CompileButtonClick(Sender: TObject);
 begin
- MainWindow.SaveDialog.Title:='Save a target mugen font';
- MainWindow.SaveDialog.DefaultExt:='*.fnt';
- MainWindow.SaveDialog.FileName:='*.fnt';
- MainWindow.SaveDialog.Filter:='Mugen font|*.fnt';
- if MainWindow.SaveDialog.Execute()=True then
+ Self.SaveDialog.Title:='Save a target mugen font';
+ Self.SaveDialog.DefaultExt:='*.fnt';
+ Self.SaveDialog.FileName:='*.fnt';
+ Self.SaveDialog.Filter:='Mugen font|*.fnt';
+ if Self.SaveDialog.Execute()=True then
  begin
-  compile_font(MainWindow.TxtField.Text,MainWindow.PcxField.Text,MainWindow.SaveDialog.FileName);
+  compile_font(Self.TxtField.Text,Self.PcxField.Text,Self.SaveDialog.FileName);
  end;
 
 end;
 
 procedure TMainWindow.OpenFntButtonClick(Sender: TObject);
 begin
- MainWindow.OpenDialog.Title:='Open a source mugen font';
- MainWindow.OpenDialog.DefaultExt:='*.fnt';
- MainWindow.OpenDialog.FileName:='*.fnt';
- MainWindow.OpenDialog.Filter:='Mugen font|*.fnt';
- if MainWindow.OpenDialog.Execute()=True then
+ Self.OpenDialog.Title:='Open a source mugen font';
+ Self.OpenDialog.DefaultExt:='*.fnt';
+ Self.OpenDialog.FileName:='*.fnt';
+ Self.OpenDialog.Filter:='Mugen font|*.fnt';
+ if Self.OpenDialog.Execute()=True then
  begin
-  MainWindow.FntField.Text:=MainWindow.OpenDialog.FileName;
+  Self.FntField.Text:=Self.OpenDialog.FileName;
  end;
 
 end;
 
 procedure TMainWindow.DecompileButtonClick(Sender: TObject);
 begin
- decompile_font(MainWindow.FntField.Text);
+ decompile_font(Self.FntField.Text);
 end;
 
 end.

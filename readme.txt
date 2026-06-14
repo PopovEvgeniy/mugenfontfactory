@@ -1,6 +1,6 @@
                                 MUGEN FONT FACTORY
 
-                                  Version 2.2.6
+                                  Version 2.2.7
 
                          This software was made by Popov Evgeniy Alekseyevich
 
@@ -21,7 +21,7 @@ This program is distributed under the GNU GENERAL PUBLIC LICENSE.
 The source code.
 
 The code is included in the source.zip archive.
-It can be compiled under Lazarus 4.6 or higher.
+It can be compiled under Lazarus 4.8 or higher.
 
 Version history.
 
@@ -48,3 +48,4 @@ Version history.
 2.2.4: The small changes.
 2.2.4.1-2.2.4.2: The documentation has been updated.
 2.2.5-2.2.6: The program has been adapted to the new version of FNT RECONSTRUCTOR.
+2.2.7: The small changes.
