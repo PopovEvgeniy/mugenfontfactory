@@ -60,7 +60,7 @@ begin
  begin
   target:='"'+source+'"';
  end;
- convert_file_name:=target;
+ Result:=target;
 end;
 
 function execute_program(const executable:string;const argument:string):Integer;
@@ -71,12 +71,12 @@ begin
  except
   code:=-1;
  end;
- execute_program:=code;
+ Result:=code;
 end;
 
 procedure run_backend_tool(const arguments:string);
 var error:SmallInt;
-var message: array[0..7] of string=('The operation was successfully completed','Cannot open the input file','Cannot create the output file','Cannot read data','Cannot write data','Cannot jump to the target offset','Cannot allocate memory','The invalid format');
+var message: array[0..8] of string=('The operation was successfully completed','Cannot open the input file','Cannot create the output file','Cannot read data','Cannot write data','Cannot jump to the target offset','Cannot allocate memory','The invalid format','Cannot get the file size!');
 var job,status:string;
 begin
  status:='Cant execute an external program';
@@ -105,7 +105,7 @@ end;
 procedure TMainWindow.window_setup();
 begin
  Application.Title:='MUGEN FONT FACTORY';
- MainWindow.Caption:='MUGEN FONT FACTORY 2.2.8';
+ MainWindow.Caption:='MUGEN FONT FACTORY 2.2.9';
  Self.BorderStyle:=bsDialog;
  Self.Font.Name:=Screen.MenuFont.Name;
  Self.Font.Size:=14;
